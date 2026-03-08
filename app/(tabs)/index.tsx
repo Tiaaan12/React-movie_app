@@ -1,29 +1,24 @@
-import { router } from "expo-router";
-import { Text, TouchableOpacity, View } from "react-native";
+import SearchBar from "@/components/SearchBar";
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+import { Image, ScrollView, View } from "react-native";
 
 export default function Index() {
   return (
-    <View style={{ flex: 1, backgroundColor: "white", padding: 20 }}>
-      <TouchableOpacity
-        onPress={() => router.replace("/welcome")}
-        style={{
-          marginTop: 20,
-          alignSelf: "flex-start",
-          marginBottom: 20,
-        }}
+    <View className="flex-1 bg-primary">
+      <Image source={images.bg} className="absolute w-full z-0" />
+
+      <ScrollView
+        className="flex-1 px-5"
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ minHeight: "100%", paddingBottom: 10 }}
       >
-        <Text style={{ color: "#3B82F6", fontSize: 18, fontWeight: "bold" }}>
-          ← Back
-        </Text>
-      </TouchableOpacity>
+        <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
 
-      <View className="flex-1 justify-center items-center">
-        <Text className="text-5xl text-dark-100 font-bold">
-          Welcome to my app.
-        </Text>
-
-        <Text className="text-5xl text-dark-100 font-bold">Hello Jonathan</Text>
-      </View>
+        <View className="flex-1 mt-5">
+          <SearchBar />
+        </View>
+      </ScrollView>
     </View>
   );
 }
