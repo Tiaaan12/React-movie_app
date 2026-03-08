@@ -3,11 +3,19 @@ import './globals.css';
 export default function RootLayout() {
   return <Stack>
       <Stack.Screen
-      name = "(tabs)"
+      name = "welcome"
       options = {{
           headerShown: false,
       }}
       />
+
+      <Stack.Screen
+      name="(tabs)"
+      options ={{
+        headerShown: false,
+      }}
+      />
+
 
       <Stack.Screen
           name = "movies/[id]"
