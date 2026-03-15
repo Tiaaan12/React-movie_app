@@ -60,7 +60,22 @@ const MovieDetails = () => {
             label="Genres"
             value={movie?.genres?.map((g) => g.name).join("-") || "N/A"}
           />
-          <View className="flex flex-row"></View>
+          <View className="flex flex-row justify-between w-1/2">
+            <MovieInfo
+              label="Budget"
+              value={`$${movie?.budget / 1_000_000} million`}
+            />
+            <MovieInfo
+              label="Revenue"
+              value={`$${Math.round(movie?.revenue) / 1_000_000}`}
+            />
+          </View>
+          <MovieInfo
+            label="Production Companies"
+            value={
+              movie?.production_companies.map((c) => c.name).join("-") || "N/A"
+            }
+          />
         </View>
       </ScrollView>
     </View>
