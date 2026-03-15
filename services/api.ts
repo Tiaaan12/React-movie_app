@@ -27,17 +27,24 @@ export const fetchMovies = async ({ query }: { query: string }) => {
   return data.results;
 };
 
-// const url = "https://api.themoviedb.org/3/keyword/keyword_id/movies";
-// const options = {
-//   method: "GET",
-//   headers: {
-//     accept: "application/json",
-//     Authorization:
-//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjU3OGRkYTZmNTIwMzkzMTYxZWVjYzI4YzFjZWMxYSIsIm5iZiI6MTc3Mjk0ODIzNy41ODYsInN1YiI6IjY5YWQwYjBkOTE3ZDZjYzhjZmRkMjczYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WIm2DOiMYtMvJVimypPWFZznVgXzOVg93BDJWkx7l18",
-//   },
-// };
+export const fetchMovieDetails = async (
+  movieId: string,
+): Promise<MovieDetails> => {
+  try {
+    const response = await fetch(
+      `${TMBD_CONFIG.BASE_URL}/movie/${movieId}?api_key=${TMBD_CONFIG.API_KEY}`,
+      {
+        method: "GET",
+        headers: TMBD_CONFIG.headers,
+      },
+    );
+    if (!response.ok) throw new Error("Failed to fetch movie details");
 
-// fetch(url, options)
-//   .then((res) => res.json())
-//   .then((json) => console.log(json))
-//   .catch((err) => console.error(err));
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
